@@ -40,6 +40,7 @@ class InformerDataset:
         self.random_seed = random_seed
 
         # Read data
+        print(f"Reading data from: {self.full_file_path_and_name}")
         self._read_data()
 
     def _get_borders(self):
