@@ -105,7 +105,7 @@ class MOMENT(nn.Module):
         self.normalizer = RevIN(
             num_features=1, affine=config.getattr("revin_affine", False)
         )
-        self.tokenizer = Patching
+        self.tokenizer = Patching(
             patch_len=config.patch_len, stride=config.patch_stride_len
         )
         self.patch_embedding = PatchEmbedding(
