@@ -3,7 +3,7 @@ import warnings
 from argparse import Namespace
 from copy import deepcopy
 from math import ceil
-from config import cfg
+from moment.config import cfg
 
 import torch
 from huggingface_hub import PyTorchModelHubMixin
