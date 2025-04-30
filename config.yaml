@@ -1,0 +1,40 @@
+# config.yaml
+
+# ── model-wide hyperparameters ────────────────────────────────────────────────
+model:
+  d_model:                  128         # hidden dim
+  seq_len:                  2605        # full input length
+  patch_len:                16          # patch size
+  patch_stride_len:         16          # patch stride
+  patch_dropout:            0.1
+  add_positional_embedding: true
+  value_embedding_bias:     false
+  orth_gain:                1.41
+
+  # transformer backbone
+  transformer_backbone:     "google/flan-t5-small"
+  transformer_type:         "encoder_only"
+  randomly_initialize_backbone: false
+  enable_gradient_checkpointing: true
+
+  # heads
+  forecast_horizon:         15
+  head_dropout:             0.1
+
+  # freezing flags
+  freeze_embedder:          true
+  freeze_encoder:           true
+  freeze_head:              false
+
+# ── data & embedding defaults ────────────────────────────────────────────────
+data:
+  max_len_pos:              2605        # for positional table
+  mask_ratio:               0.3
+  num_sensors:              8           # will be overridden at runtime
+  num_features:             1           # 1 for univariate
+
+# ── training / eval ──────────────────────────────────────────────────────────
+train:
+  batch_size:               32
+  learning_rate:            1e-3
+  max_epochs:               50

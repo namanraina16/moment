@@ -5,10 +5,10 @@ import torch
 import torch.nn as nn
 
 from momentfm.utils.masking import Masking
-
+from config import cfg
 
 class PositionalEmbedding(nn.Module):
-    def __init__(self, d_model, max_len=5000, model_name="MOMENT"):
+    def __init__(self, d_model, max_len=5000, model_name="MOMENT"): #HARDCODED PARAMETERS
         super(PositionalEmbedding, self).__init__()
         self.model_name = model_name
 
@@ -41,11 +41,11 @@ class PositionalEmbedding(nn.Module):
 class TokenEmbedding(nn.Module):
     def __init__(self, c_in, d_model):
         super(TokenEmbedding, self).__init__()
-        padding = 1 if torch.__version__ >= "1.5.0" else 2
+        padding = 1 if torch.__version__ >= "1.5.0" else 2 #HARDCODED PARAMETERS
         self.tokenConv = nn.Conv1d(
             in_channels=c_in,
             out_channels=d_model,
-            kernel_size=3,
+            kernel_size=3, #HARDCODED PARAMETERS
             padding=padding,
             padding_mode="circular",
             bias=False,
@@ -95,6 +95,7 @@ class TemporalEmbedding(nn.Module):
         weekday_size = 7
         day_size = 32
         month_size = 13
+        #HARDCODED PARAMETERS
 
         Embed = FixedEmbedding if embed_type == "fixed" else nn.Embedding
         if freq == "t":
@@ -179,7 +180,7 @@ class DataEmbedding_wo_pos(nn.Module):
 
 
 class PatchEmbedding(nn.Module):
-    def __init__(
+    def __init__( #HARDCODED PARAMETERS
         self,
         d_model: int = 768,
         seq_len: int = 512,
@@ -226,6 +227,10 @@ class PatchEmbedding(nn.Module):
         )
         # mask : [batch_size x n_channels x n_patches x d_model]
 
+
+        print(f"config num_sensors: {cfg['model']['num_sensors']}")
+        print(f"cfg patch len: {cfg['model']['patch_len']}")
+        print(f"cfg d_model: {cfg['model']['d_model']}")
         # Input encoding
         x = mask * self.value_embedding(x) + (1 - mask) * self.mask_embedding
         if self.add_positional_embedding:
@@ -235,7 +240,7 @@ class PatchEmbedding(nn.Module):
 
 
 class Patching(nn.Module):
-    def __init__(self, patch_len: int, stride: int):
+    def __init__(self, patch_len: int, stride: int): #HARDCODED PARAMETERS
         super().__init__()
         self.patch_len = patch_len
         self.stride = stride

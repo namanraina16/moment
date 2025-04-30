@@ -3,6 +3,7 @@ import warnings
 from argparse import Namespace
 from copy import deepcopy
 from math import ceil
+from config import cfg
 
 import torch
 from huggingface_hub import PyTorchModelHubMixin
@@ -32,8 +33,8 @@ SUPPORTED_HUGGINGFACE_MODELS = [
 class PretrainHead(nn.Module):
     def __init__(
         self,
-        d_model: int = 768,
-        patch_len: int = 8,
+        d_model: int = 768,#HARDCODED PARAMETERS
+        patch_len: int = 8, #HARDCODED PARAMETERS
         head_dropout: float = 0.1,
         orth_gain: float = 1.41,
     ):
@@ -78,7 +79,7 @@ class ClassificationHead(nn.Module):
 
 class ForecastingHead(nn.Module):
     def __init__(
-        self, head_nf: int = 768 * 64, forecast_horizon: int = 96, head_dropout: int = 0
+        self, head_nf: int = 768 * 64, forecast_horizon: int = 96, head_dropout: int = 0 #HARDCODED PARAMETERS
     ):
         super().__init__()
         self.flatten = nn.Flatten(start_dim=-2)
