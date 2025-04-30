@@ -1,5 +1,4 @@
 from typing import Optional
-from moment.config import cfg
 
 import torch
 

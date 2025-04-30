@@ -5,7 +5,6 @@ import torch
 import torch.nn as nn
 
 from momentfm.utils.masking import Masking
-from moment.config import cfg
 
 class PositionalEmbedding(nn.Module):
     def __init__(self, d_model, max_len=5000, model_name="MOMENT"): #HARDCODED PARAMETERS

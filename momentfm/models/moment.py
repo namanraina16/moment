@@ -3,7 +3,6 @@ import warnings
 from argparse import Namespace
 from copy import deepcopy
 from math import ceil
-from moment.config import cfg
 
 import torch
 from huggingface_hub import PyTorchModelHubMixin
@@ -106,7 +105,7 @@ class MOMENT(nn.Module):
         self.normalizer = RevIN(
             num_features=1, affine=config.getattr("revin_affine", False)
         )
-        self.tokenizer = Patching(
+        self.tokenizer = Patching
             patch_len=config.patch_len, stride=config.patch_stride_len
         )
         self.patch_embedding = PatchEmbedding(
