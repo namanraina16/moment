@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 
 from momentfm.utils.masking import Masking
-from momentfm import cfg
+from momentfm.config import Config
 
 class PositionalEmbedding(nn.Module):
     def __init__(self, d_model, max_len=5000, model_name="MOMENT"): #HARDCODED PARAMETERS
@@ -227,7 +227,8 @@ class PatchEmbedding(nn.Module):
         )
         # mask : [batch_size x n_channels x n_patches x d_model]
 
-
+        cfg = Config()
+        # HARDCODED PARAMETERS
         print(cfg.model.hidden_size)
         print(cfg.data.batch_size)
         # Input encoding
