@@ -228,9 +228,8 @@ class PatchEmbedding(nn.Module):
         # mask : [batch_size x n_channels x n_patches x d_model]
 
 
-        print(f"config num_sensors: {cfg['model']['num_sensors']}")
-        print(f"cfg patch len: {cfg['model']['patch_len']}")
-        print(f"cfg d_model: {cfg['model']['d_model']}")
+        print(cfg.model.hidden_size)
+        print(cfg.data.batch_size)
         # Input encoding
         x = mask * self.value_embedding(x) + (1 - mask) * self.mask_embedding
         if self.add_positional_embedding:
